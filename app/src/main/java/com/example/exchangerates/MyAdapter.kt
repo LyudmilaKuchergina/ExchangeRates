@@ -30,7 +30,6 @@ class MyAdapter(
         notifyDataSetChanged()
     }
 
-
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val twNumCode = view.findViewById<TextView>(R.id.twNumCode)
         private val tvCharCode = view.findViewById<TextView>(R.id.tvCharCode)
