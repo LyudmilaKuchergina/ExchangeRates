@@ -7,11 +7,13 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
+import kotlin.concurrent.scheduleAtFixedRate
 
 class RateViewModel : ViewModel() {
     val liveData = MutableLiveData<List<Valute>>()
 
-    init{getValutes()}
+    init{refresh()}
 
     fun getValutes() {
         val retrofit = Retrofit.Builder()
@@ -36,5 +38,12 @@ class RateViewModel : ViewModel() {
                 t.printStackTrace()
             }
         })
+    }
+    fun refresh(){
+        val timer = Timer()
+        val period: Long = 10000
+        timer.scheduleAtFixedRate(period, period) {
+            getValutes()
+        }
     }
 }
